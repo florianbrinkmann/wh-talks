@@ -41,4 +41,7 @@ registerBlockType( 'wh-talks/meta', {
 			</div>
 		);
 	},
+	save: () => {
+		return <ul { ...useBlockProps.save() }></ul>;
+	},
 } );

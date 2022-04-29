@@ -29,7 +29,7 @@ function register_block() {
 }
 add_action( 'init', __NAMESPACE__ . '\\register_block' );
 
-function render_block() {
+function render_block( $attributes, $block_content ) {
 	$markup = '';
 	foreach ( get_meta_keys() as $meta_key => $label ) {
 		$meta_value = get_post_meta( get_the_ID(), $meta_key, true ) ?? null;
@@ -47,7 +47,7 @@ function render_block() {
 		return '';
 	}
 
-	return "<ul class='wp-block-wh-talk-meta'>$markup</ul>";
+	return str_replace( '</ul>', "$markup</ul>", $block_content );
 }
 
 function get_meta_keys() {

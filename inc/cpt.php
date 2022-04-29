@@ -22,7 +22,7 @@ function register_cpt() {
 
 	/**
 	 * Block template that is added to the editor when creating talks.
-	 * 
+	 *
 	 * @param array The blocks.
 	 */
 	$cpt_template = (array) apply_filters(
