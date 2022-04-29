@@ -9,6 +9,11 @@
 
 namespace WH\Talks;
 
+/**
+ * Lodas the textdomain to make the plugin translatable.
+ *
+ * @return void
+ */
 function load_textdomain() {
 	load_plugin_textdomain(
 		'wh-talks',
@@ -18,7 +23,11 @@ function load_textdomain() {
 }
 add_action( 'init', __NAMESPACE__ . '\\load_textdomain' );
 
-
+/**
+ * Registers the block talk meta block.
+ *
+ * @return void
+ */
 function register_block() {
 	register_block_type(
 		__DIR__,
@@ -29,6 +38,14 @@ function register_block() {
 }
 add_action( 'init', __NAMESPACE__ . '\\register_block' );
 
+/**
+ * Renders the talk meta block on the frontend.
+ *
+ * @param array $attributes
+ * @param string $block_content
+ * 
+ * @return string
+ */
 function render_block( $attributes, $block_content ) {
 	$markup = '';
 	foreach ( get_meta_keys() as $meta_key => $label ) {
@@ -50,6 +67,11 @@ function render_block( $attributes, $block_content ) {
 	return str_replace( '</ul>', "$markup</ul>", $block_content );
 }
 
+/**
+ * Returns array of meta keys with their labels.
+ *
+ * @return array
+ */
 function get_meta_keys() {
 	return [
 		'wh_talks_event_name' => __( 'Event', 'wh-talks' ),
