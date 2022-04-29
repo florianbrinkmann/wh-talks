@@ -9,6 +9,8 @@
 
 namespace WH\Talks;
 
+use WP_Block_Type_Registry;
+
 /**
  * Lodas the textdomain to make the plugin translatable.
  *
@@ -41,9 +43,9 @@ add_action( 'init', __NAMESPACE__ . '\\register_block' );
 /**
  * Renders the talk meta block on the frontend.
  *
- * @param array $attributes
- * @param string $block_content
- * 
+ * @param array  $attributes The block attributes.
+ * @param string $block_content The block markup from the editor.
+ *
  * @return string
  */
 function render_block( $attributes, $block_content ) {
@@ -66,6 +68,49 @@ function render_block( $attributes, $block_content ) {
 
 	return str_replace( '</ul>', "$markup</ul>", $block_content );
 }
+
+/**
+ * Only show talk meta block for `talk` CPT in editor.
+ *
+ * @param bool|array $allowed_block_types Array of block type slugs, or boolean to enable/disable all.
+ *
+ * @return bool|array
+ */
+function filter_allowed_blocks( $allowed_block_types ) {
+	if ( 'talk' === get_post_type() ) {
+		return $allowed_block_types;
+	}
+
+	$block_to_remove = 'wh-talks/meta';
+	if ( is_array( $allowed_block_types ) ) {
+		if ( ! in_array( $block_to_remove, $allowed_block_types ) ) {
+			return $allowed_block_types;
+		}
+
+		foreach ( $allowed_block_types as $key => $block_type ) {
+			if ( $block_type !== $block_to_remove ) {
+				continue;
+			}
+
+			unset( $allowed_block_types[ $key ] );
+			return $allowed_block_types;
+		}
+	}
+
+	$tmp = WP_Block_Type_Registry::get_instance()->get_all_registered();
+
+	$allowed_block_types = [];
+	foreach ( $tmp as $block_name => $block_object ) {
+		if ( $block_name === $block_to_remove ) {
+			continue;
+		}
+
+		$allowed_block_types[] = $block_name;
+	}
+
+	return $allowed_block_types;
+}
+add_filter( 'allowed_block_types_all', __NAMESPACE__ . '\\filter_allowed_blocks' );
 
 /**
  * Returns array of meta keys with their labels.
