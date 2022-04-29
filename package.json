@@ -1,0 +1,14 @@
+{
+  "name": "wh-talks",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "wp-scripts build",
+    "start": "wp-scripts start",
+    "lint:js": "wp-scripts lint-js"
+  },
+  "author": "",
+  "license": "GPL-2.0-or-later",
+  "dependencies": {
+    "@wordpress/scripts": "^22.5.0"
+  }
+}
