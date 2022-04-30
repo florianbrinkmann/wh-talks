@@ -70,5 +70,15 @@ function register_meta() {
 			]
 		);
 	}
+
+	register_post_meta(
+		'talk',
+		'wh_talks_is_highlight',
+		[
+			'single'       => true,
+			'show_in_rest' => true,
+			'type'         => 'boolean',
+		]
+	);
 }
 add_action( 'init', __NAMESPACE__ . '\\register_meta' );
