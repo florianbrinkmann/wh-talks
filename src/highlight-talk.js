@@ -10,7 +10,6 @@ registerPlugin( 'wh-hide-page-title-checkbox-post-status-info', {
 		const updateMeta = ( newValue ) => {
 			setMeta( { ...meta, wh_talks_is_highlight: newValue } );
 		};
-		console.log(meta);
 		const checked = meta?.wh_talks_is_highlight;
 		return (
 			<PluginPostStatusInfo>
