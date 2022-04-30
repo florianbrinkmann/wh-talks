@@ -1,1 +1,2 @@
-import './blocks/talk-meta';
+import './block';
+import './sidebar-panel';

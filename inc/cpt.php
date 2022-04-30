@@ -48,6 +48,7 @@ function register_cpt() {
 		'public'       => true,
 		'show_in_rest' => true,
 		'template'     => $cpt_template,
+		'menu_icon'    => 'dashicons-megaphone',
 	];
 	register_post_type( 'talk', $args );
 }
