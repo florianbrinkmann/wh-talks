@@ -1,0 +1,24 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 2,
+    "name": "wh-talks/single-meta",
+    "version": "0.1.0",
+    "title": "Talk meta value",
+    "description": "Display single talk meta value",
+    "attributes": {
+        "metaKey": {
+            "type": "string",
+            "default": "wh_talks_event_name"
+        },
+        "label": {
+            "type": "string",
+            "default": ""
+        }
+    },
+    "supports": {
+        "html": false,
+        "align": true
+    },
+    "textdomain": "wh-talks",
+    "editorScript": "file:./index.js"
+}

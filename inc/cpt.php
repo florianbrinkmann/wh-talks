@@ -48,6 +48,10 @@ function register_cpt() {
 		'public'       => true,
 		'show_in_rest' => true,
 		'template'     => $cpt_template,
+		'has_archive'  => true,
+		'rewrite'      => [ /* translators: slug for permalink of CPT */
+			'slug' => __( 'talks', 'wh-talks' ),
+		],
 		'menu_icon'    => 'dashicons-megaphone',
 	];
 	register_post_type( 'talk', $args );
@@ -60,7 +64,11 @@ add_action( 'init', __NAMESPACE__ . '\\register_cpt' );
  * @return void
  */
 function register_meta() {
-	foreach ( get_meta_keys() as $meta_key => $label ) {
+	foreach ( get_string_metas() as $meta ) {
+		$meta_key = $meta['key'] ?? null;
+		if ( empty( $meta_key ) ) {
+			continue;
+		}
 		register_post_meta(
 			'talk',
 			$meta_key,

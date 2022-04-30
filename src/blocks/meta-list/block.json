@@ -1,14 +1,14 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "apiVersion": 2,
-    "name": "wh-talks/meta",
+    "name": "wh-talks/meta-list",
     "version": "0.1.0",
-    "title": "Talk metadata",
-    "description": "Add metadata to your talk",
+    "title": "Talk metadata list",
+    "description": "Display the talk metadata as list",
     "supports": {
         "html": false,
         "align": true
     },
     "textdomain": "wh-talks",
-    "editorScript": "file:./build/index.js"
+    "editorScript": "file:./index.js"
 }
