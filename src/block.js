@@ -1,47 +1,18 @@
 import { registerBlockType } from '@wordpress/blocks';
 import { useBlockProps } from '@wordpress/block-editor';
 import { useEntityProp } from '@wordpress/core-data';
-import { TextControl } from '@wordpress/components';
-import { __ } from '@wordpress/i18n';
+
+import { metaFields } from './fields';
 
 registerBlockType( 'wh-talks/meta', {
 	edit: () => {
 		const [ meta, setMeta ] = useEntityProp( 'postType', 'talk', 'meta' );
 
-		const eventName = meta?.wh_talks_event_name,
-			language = meta?.wh_talks_language,
-			duration = meta?.wh_talks_duration;
-
-		const updateMeta = ( metaKey, newValue ) => {
-			setMeta( { ...meta, [ metaKey ]: newValue } );
-		};
+		const fields = metaFields( meta, setMeta );
 
 		return (
 			<div { ...useBlockProps() }>
-				<TextControl
-					label={ __(
-						'Name of event where you held the talk',
-						'wh-talks'
-					) }
-					value={ eventName }
-					onChange={ ( newValue ) =>
-						updateMeta( 'wh_talks_event_name', newValue )
-					}
-				/>
-				<TextControl
-					label={ __( 'Language' ) }
-					value={ language }
-					onChange={ ( newValue ) =>
-						updateMeta( 'wh_talks_language', newValue )
-					}
-				/>
-				<TextControl
-					label={ __( 'Duration' ) }
-					value={ duration }
-					onChange={ ( newValue ) =>
-						updateMeta( 'wh_talks_duration', newValue )
-					}
-				/>
+				{ fields }
 			</div>
 		);
 	},
