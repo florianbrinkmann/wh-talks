@@ -55,10 +55,22 @@ function render_block( $attributes, $block_content ) {
 		if ( null === $meta_value ) {
 			continue;
 		}
+
+		$value = $meta_value;
+
+		if ( strrpos( $meta_key, '_link' ) === strlen( $meta_key ) - strlen( '_link' ) ) {
+			$url   = esc_url( $meta_value );
+			$host  = parse_url( $url, PHP_URL_HOST );
+			$value = sprintf(
+				'<a href="%s">%s</a>',
+				$url,
+				$host
+			);
+		}
 		$markup .= sprintf(
 			'<li><span class="wh-talks-meta-label">%s:</span> %s</li>',
 			$label,
-			$meta_value
+			$value
 		);
 	}
 
@@ -119,9 +131,11 @@ add_filter( 'allowed_block_types_all', __NAMESPACE__ . '\\filter_allowed_blocks'
  */
 function get_meta_keys() {
 	return [
-		'wh_talks_event_name' => __( 'Event', 'wh-talks' ),
-		'wh_talks_language'   => __( 'Language', 'wh-talks' ),
-		'wh_talks_duration'   => __( 'Duration', 'wh-talks' ),
+		'wh_talks_event_name'  => __( 'Event', 'wh-talks' ),
+		'wh_talks_language'    => __( 'Language', 'wh-talks' ),
+		'wh_talks_duration'    => __( 'Duration', 'wh-talks' ),
+		'wh_talks_video_link'  => __( 'Video', 'wh-talks' ),
+		'wh_talks_slides_link' => __( 'Slides', 'wh-talks' ),
 	];
 }
 

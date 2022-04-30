@@ -10,11 +10,7 @@ registerBlockType( 'wh-talks/meta', {
 
 		const fields = metaFields( meta, setMeta );
 
-		return (
-			<div { ...useBlockProps() }>
-				{ fields }
-			</div>
-		);
+		return <div { ...useBlockProps() }>{ fields }</div>;
 	},
 	save: () => {
 		return <ul { ...useBlockProps.save() }></ul>;
