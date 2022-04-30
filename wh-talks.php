@@ -40,6 +40,17 @@ function register_block() {
 }
 add_action( 'init', __NAMESPACE__ . '\\register_block' );
 
+function enqueue_block_editor_assets() {
+	if ( 'talk' !== get_post_type() ) {
+		return;
+	}
+
+
+	$metas = wp_json_encode( get_meta_keys() );
+	echo "<script>var whTalksMetas = $metas;</script>";
+}
+add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_block_editor_assets' );
+
 /**
  * Renders the talk meta block on the frontend.
  *

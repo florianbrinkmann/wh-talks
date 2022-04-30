@@ -6,6 +6,9 @@ import { __ } from '@wordpress/i18n';
 
 registerPlugin( 'wh-hide-page-title-checkbox-post-status-info', {
 	render: () => {
+		if ( 'talk' !== wp.data.select('core/editor').getCurrentPostType() ) {
+			return null;
+		}
 		const [ meta, setMeta ] = useEntityProp( 'postType', 'talk', 'meta' );
 		const updateMeta = ( newValue ) => {
 			setMeta( { ...meta, wh_talks_is_highlight: newValue } );
