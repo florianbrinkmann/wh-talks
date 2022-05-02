@@ -2,8 +2,11 @@
 /**
  * Plugin Name: Talks
  * Plugin Description: Managing talks you gave.
- * Plugin Author: Your name
+ * Author: Florian Brinkmann
+ * Author URI: https://florianbrinkmann.com/en/
  * Version: 0.1.0
+ * Requires at least: 6.0
+ * Requires PHP: 7.0
  * Text Domain: wh-talks
  */
 
