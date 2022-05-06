@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Talks
- * Plugin Description: Managing talks you gave.
+ * Description: Managing talks you gave.
  * Author: Florian Brinkmann
  * Author URI: https://florianbrinkmann.com/en/
  * Version: 0.1.0
