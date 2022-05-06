@@ -90,3 +90,65 @@ function register_meta() {
 	);
 }
 add_action( 'init', __NAMESPACE__ . '\\register_meta' );
+
+/**
+ * Returns the string or markup for a talk meta key.
+ *
+ * @param string $meta_key The meta key.
+ *
+ * @return string
+ */
+function get_meta_value_markup( $meta_key ) {
+	$meta_value = get_post_meta( get_the_ID(), $meta_key, true ) ?? null;
+	if ( empty( $meta_value ) ) {
+		return '';
+	}
+
+	$value = $meta_value;
+
+	if ( strrpos( $meta_key, '_link' ) !== strlen( $meta_key ) - strlen( '_link' ) ) {
+		return $value;
+	}
+
+	if ( 1 !== preg_match( '/^(http:|https:)?\/\//', $meta_value ) ) {
+		return '';
+	}
+
+	$url  = esc_url( $meta_value );
+	$host = parse_url( $url, PHP_URL_HOST );
+	return sprintf(
+		'<a href="%s">%s</a>',
+		$url,
+		$host
+	);
+}
+
+/**
+ * Returns array of meta keys with their labels.
+ *
+ * @return array
+ */
+function get_string_metas() {
+	return [
+		[
+			'key'   => 'wh_talks_event_name',
+			'label' => __( 'Event', 'wh-talks' ),
+		],
+		[
+			'key'   => 'wh_talks_language',
+			'label' => __( 'Language', 'wh-talks' ),
+		],
+		[
+			'key'   => 'wh_talks_duration',
+			'label' => __( 'Duration', 'wh-talks' ),
+		],
+		[
+			'key'   => 'wh_talks_video_link',
+			'label' => __( 'Video', 'wh-talks' ),
+		],
+		[
+			'key'   => 'wh_talks_slides_link',
+			'label' => __( 'Slides', 'wh-talks' ),
+		],
+	];
+}
