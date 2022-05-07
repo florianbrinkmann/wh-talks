@@ -27,13 +27,10 @@ registerBlockType( 'wh-talks/meta-list', {
 								</a>
 							);
 						} catch {
-							const url = {
-								host: __(
-									'This does not seem to be a valid URL',
-									'wh-talks'
-								),
-							};
-							metaValue = <a>{ url.host }</a>;
+							metaValue = <a>{ __(
+								'This does not seem to be a valid URL',
+								'wh-talks'
+							) }</a>;
 						}
 					}
 					hasValues = true;
@@ -47,7 +44,7 @@ registerBlockType( 'wh-talks/meta-list', {
 						</li>
 					);
 				} ) }
-				{ ! hasValues && <li>Lists all talk meta data.</li> }
+				{ ! hasValues && <li>{ __( 'Lists all talk meta data.', 'wh-talks' ) }</li> }
 			</ul>
 		);
 	},
