@@ -152,10 +152,8 @@ function get_meta_value_markup( $meta_key ) {
 		return '';
 	}
 
-	$value = $meta_value;
-
 	if ( strrpos( $meta_key, '_link' ) !== strlen( $meta_key ) - strlen( '_link' ) ) {
-		return $value;
+		return $meta_value;
 	}
 
 	if ( 1 !== preg_match( '/^(http:|https:)?\/\//', $meta_value ) ) {
