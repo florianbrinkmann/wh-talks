@@ -26,5 +26,14 @@ function load_textdomain() {
 }
 add_action( 'init', __NAMESPACE__ . '\\load_textdomain' );
 
-require_once 'inc/blocks.php';
+register_activation_hook( __FILE__, function() {
+	register_cpt();
+	flush_rewrite_rules();
+} );
+
+register_deactivation_hook( __FILE__, function() {
+	flush_rewrite_rules();
+} );
+
 require_once 'inc/cpt.php';
+require_once 'inc/blocks.php';

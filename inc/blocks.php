@@ -33,20 +33,24 @@ add_action( 'init', __NAMESPACE__ . '\\register_blocks' );
  *
  * @return void
  */
-function enqueue_block_editor_assets() {
+function enqueue_editor_assets() {
 	$asset_info = include __DIR__ . '/../build/index.asset.php';
 
 	wp_enqueue_script(
-		'wh-talk-editor-customizations',
+		'wh-talks-editor-modifications',
 		plugins_url( '../build/index.js', __FILE__ ),
 		$asset_info['dependencies'],
 		$asset_info['version']
 	);
-
-	$metas = wp_json_encode( get_string_metas() );
-	echo "<script>var whTalksMetas = $metas;</script>";
+	wp_localize_script(
+		'wh-talks-editor-modifications',
+		'whTalksObject',
+		[
+			'metas' => get_string_metas(),
+		]
+	);
 }
-add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_block_editor_assets' );
+add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_editor_assets' );
 
 /**
  * Renders the meta list block block on the frontend.

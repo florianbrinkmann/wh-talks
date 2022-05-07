@@ -1,4 +1,4 @@
-/* global whTalksMetas */
+/* global whTalksObject */
 import { registerBlockType } from '@wordpress/blocks';
 import { useBlockProps } from '@wordpress/block-editor';
 import { useEntityProp } from '@wordpress/core-data';
@@ -12,7 +12,7 @@ registerBlockType( 'wh-talks/meta-list', {
 
 		return (
 			<ul { ...useBlockProps() }>
-				{ whTalksMetas.map( ( metaInfo, i ) => {
+				{ whTalksObject.metas.map( ( metaInfo, i ) => {
 					let metaValue = meta?.[ metaInfo.key ];
 					if ( ! metaValue ) {
 						return false;
@@ -42,7 +42,8 @@ registerBlockType( 'wh-talks/meta-list', {
 							<span className='wh-talks-meta-label'>
 								{ metaInfo.label }:
 							</span>
-							{ ` ${ metaValue }` }
+							{ ' ' }
+							{ metaValue }
 						</li>
 					);
 				} ) }

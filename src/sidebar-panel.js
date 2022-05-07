@@ -4,7 +4,8 @@ import { useEntityProp } from '@wordpress/core-data';
 import { TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
-registerPlugin( 'wh-hide-page-title-panel', {
+registerPlugin( 'wh-talks-metadata-panel', {
+	icon: 'megaphone',
 	render: () => {
 		if ( 'talk' !== wp.data.select( 'core/editor' ).getCurrentPostType() ) {
 			return null;
@@ -24,8 +25,7 @@ registerPlugin( 'wh-hide-page-title-panel', {
 		return (
 			<PluginDocumentSettingPanel
 				name='wh-talks-meta-panel'
-				title='Talk meta data'
-				icon='megaphone'
+				title={ __( 'Talk meta data', 'wh-talks' ) }
 			>
 				<TextControl
 					label={ __(

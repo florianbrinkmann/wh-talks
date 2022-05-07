@@ -10,14 +10,31 @@ namespace WH\Talks;
  */
 function register_cpt() {
 	$labels = [
-		'name'          => __( 'Talks', 'wh-talks' ),
-		'singular_name' => __( 'Talk', 'wh-talks' ),
-		'add_new_item'  => __( 'Add talk', 'wh-talks' ),
-		'edit_item'     => __( 'Edit talk', 'wh-talks' ),
-		'new_item'      => __( 'New talk', 'wh-talks' ),
-		'view_item'     => __( 'View talk', 'wh-talks' ),
-		'view_items'    => __( 'View talks', 'wh-talks' ),
-		'not_found'     => __( 'No talks found.', 'wh-talks' ),
+		'name'                     => __( 'Talks', 'wh-talks' ),
+		'singular_name'            => __( 'Talk', 'wh-talks' ),
+		'add_new_item'             => __( 'Add new talk', 'wh-talks' ),
+		'edit_item'                => __( 'Edit talk', 'wh-talks' ),
+		'new_item'                 => __( 'New talk', 'wh-talks' ),
+		'view_item'                => __( 'View talk', 'wh-talks' ),
+		'view_items'               => __( 'View talks', 'wh-talks' ),
+		'search_items'             => __( 'Search talks', 'wh-talks' ),
+		'not_found'                => __( 'No talks found', 'wh-talks' ),
+		'not_found_in_trash'       => __( 'No talks found in trash', 'wh-talks' ),
+		'all_items'                => __( 'All talks', 'wh-talks' ),
+		'archives'                 => __( 'Talk archives', 'wh-talks' ),
+		'attributes'               => __( 'Talk attributes', 'wh-talks' ),
+		'insert_into_item'         => __( 'Insert into talk', 'wh-talks' ),
+		'uploaded_to_this_item'    => __( 'Uploaded to this talk', 'wh-talks' ),
+		'filter_items_list'        => __( 'Filter talks list', 'wh-talks' ),
+		'items_list_navigation'    => __( 'Talks list navigation', 'wh-talks' ),
+		'items_list'               => __( 'Talks list', 'wh-talks' ),
+		'item_published'           => __( 'Talk published.', 'wh-talks' ),
+		'item_published_privately' => __( 'Talk published privately', 'wh-talks' ),
+		'item_reverted_to_draft'   => __( 'Talk reverted to draft.', 'wh-talks' ),
+		'item_scheduled'           => __( 'Talk scheduled.', 'wh-talks' ),
+		'item_updated'             => __( 'Talk updated.', 'wh-talks' ),
+		'item_link'                => __( 'Talk link', 'wh-talks' ),
+		'item_link_description'    => __( 'A link to a talk', 'wh-talks' ),
 	];
 
 	/**
@@ -30,7 +47,7 @@ function register_cpt() {
 		[
 			[ 'core/paragraph' ],
 			[ 'core/more' ],
-			[ 'wh-talks/meta' ],
+			[ 'wh-talks/meta-list' ],
 		]
 	);
 
@@ -49,6 +66,7 @@ function register_cpt() {
 		'show_in_rest' => true,
 		'template'     => $cpt_template,
 		'has_archive'  => true,
+		'rest_base'    => 'talks',
 		'rewrite'      => [ /* translators: slug for permalink of CPT */
 			'slug' => __( 'talks', 'wh-talks' ),
 		],
@@ -92,6 +110,36 @@ function register_meta() {
 add_action( 'init', __NAMESPACE__ . '\\register_meta' );
 
 /**
+ * Returns array of meta keys with their labels.
+ *
+ * @return array
+ */
+function get_string_metas() {
+	return [
+		[
+			'key'   => 'wh_talks_event_name',
+			'label' => __( 'Event', 'wh-talks' ),
+		],
+		[
+			'key'   => 'wh_talks_language',
+			'label' => __( 'Language', 'wh-talks' ),
+		],
+		[
+			'key'   => 'wh_talks_duration',
+			'label' => __( 'Duration', 'wh-talks' ),
+		],
+		[
+			'key'   => 'wh_talks_video_link',
+			'label' => __( 'Video', 'wh-talks' ),
+		],
+		[
+			'key'   => 'wh_talks_slides_link',
+			'label' => __( 'Slides', 'wh-talks' ),
+		],
+	];
+}
+
+/**
  * Returns the string or markup for a talk meta key.
  *
  * @param string $meta_key The meta key.
@@ -121,34 +169,4 @@ function get_meta_value_markup( $meta_key ) {
 		$url,
 		$host
 	);
-}
-
-/**
- * Returns array of meta keys with their labels.
- *
- * @return array
- */
-function get_string_metas() {
-	return [
-		[
-			'key'   => 'wh_talks_event_name',
-			'label' => __( 'Event', 'wh-talks' ),
-		],
-		[
-			'key'   => 'wh_talks_language',
-			'label' => __( 'Language', 'wh-talks' ),
-		],
-		[
-			'key'   => 'wh_talks_duration',
-			'label' => __( 'Duration', 'wh-talks' ),
-		],
-		[
-			'key'   => 'wh_talks_video_link',
-			'label' => __( 'Video', 'wh-talks' ),
-		],
-		[
-			'key'   => 'wh_talks_slides_link',
-			'label' => __( 'Slides', 'wh-talks' ),
-		],
-	];
 }

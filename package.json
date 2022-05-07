@@ -8,7 +8,7 @@
   },
   "author": "",
   "license": "GPL-2.0-or-later",
-  "dependencies": {
+  "devDependencies": {
     "@wordpress/scripts": "^22.5.0"
   }
 }

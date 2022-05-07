@@ -1,4 +1,4 @@
-/* global whTalksMetas */
+/* global whTalksObject */
 import { registerBlockType } from '@wordpress/blocks';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import { useEntityProp } from '@wordpress/core-data';
@@ -10,11 +10,11 @@ registerBlockType( 'wh-talks/single-meta', {
 		const { metaKey, label } = attributes;
 		const [ meta ] = useEntityProp( 'postType', 'talk', 'meta' );
 
-		const currentMetaInfoEntry = whTalksMetas.find( ( metaInfo ) => {
+		const currentMetaInfoEntry = whTalksObject.metas.find( ( metaInfo ) => {
 			return metaInfo.key === metaKey;
 		} );
 
-		const selectOptions = whTalksMetas.map( ( metaInfo ) => {
+		const selectOptions = whTalksObject.metas.map( ( metaInfo ) => {
 			return {
 				value: metaInfo.key,
 				label: metaInfo.label,
