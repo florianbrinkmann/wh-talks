@@ -128,6 +128,10 @@ function filter_allowed_blocks( $allowed_block_types, $block_editor_context ) {
 		return $allowed_block_types;
 	}
 
+	if ( false === $allowed_block_types ) {
+		return $allowed_block_types;
+	}
+
 	$blocks_to_remove = [
 		'wh-talks/meta-list',
 		'wh-talks/single-meta',
