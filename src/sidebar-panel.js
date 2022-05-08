@@ -13,10 +13,10 @@ registerPlugin( 'wh-talks-metadata-panel', {
 		const [ meta, setMeta ] = useEntityProp( 'postType', 'talk', 'meta' );
 
 		const eventName = meta?.wh_talks_event_name,
-		language = meta?.wh_talks_language,
-		duration = meta?.wh_talks_duration,
-		videoLink = meta?.wh_talks_video_link,
-		slidesLink = meta?.wh_talks_slides_link;
+			language = meta?.wh_talks_language,
+			duration = meta?.wh_talks_duration,
+			videoLink = meta?.wh_talks_video_link,
+			slidesLink = meta?.wh_talks_slides_link;
 
 		const updateMeta = ( metaKey, newValue ) => {
 			setMeta( { ...meta, [ metaKey ]: newValue } );
