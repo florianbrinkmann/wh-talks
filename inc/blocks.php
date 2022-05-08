@@ -133,18 +133,14 @@ function filter_allowed_blocks( $allowed_block_types, $block_editor_context ) {
 		'wh-talks/single-meta',
 	];
 	if ( is_array( $allowed_block_types ) ) {
-		if ( ! in_array( $blocks_to_remove, $allowed_block_types ) ) {
-			return $allowed_block_types;
-		}
-
 		foreach ( $allowed_block_types as $key => $block_type ) {
 			if ( ! in_array( $block_type, $blocks_to_remove, true ) ) {
 				continue;
 			}
 
 			unset( $allowed_block_types[ $key ] );
-			return $allowed_block_types;
 		}
+		return $allowed_block_types;
 	}
 
 	$tmp = WP_Block_Type_Registry::get_instance()->get_all_registered();
