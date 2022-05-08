@@ -147,13 +147,28 @@ function get_string_metas() {
  * @return string
  */
 function get_meta_value_markup( $meta_key ) {
+	$allowed_meta = false;
+	
+	foreach ( get_string_metas() as $meta ) {
+		if ( $meta_key !== $meta['key'] ) {
+			continue;
+		}
+
+		$allowed_meta = true;
+		break;
+	}
+
+	if ( ! $allowed_meta ) {
+		return '';
+	}
+
 	$meta_value = get_post_meta( get_the_ID(), $meta_key, true ) ?? null;
 	if ( empty( $meta_value ) ) {
 		return '';
 	}
 
 	if ( strrpos( $meta_key, '_link' ) !== strlen( $meta_key ) - strlen( '_link' ) ) {
-		return $meta_value;
+		return esc_html( $meta_value );
 	}
 
 	if ( 1 !== preg_match( '/^(http:|https:)?\/\//', $meta_value ) ) {
