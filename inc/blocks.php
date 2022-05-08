@@ -5,6 +5,7 @@
 
 namespace WH\Talks;
 
+use WP_Block_Editor_Context;
 use WP_Block_Type_Registry;
 
 /**
@@ -118,6 +119,7 @@ function render_single_meta_block( $attributes, $block_content ) {
  * Only show talk meta block for `talk` CPT in editor.
  *
  * @param bool|array $allowed_block_types Array of block type slugs, or boolean to enable/disable all.
+ * @param WP_Block_Editor_Context $block_editor_context The current block editor context.
  *
  * @return bool|array
  */
