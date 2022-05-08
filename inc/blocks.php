@@ -118,13 +118,13 @@ function render_single_meta_block( $attributes, $block_content ) {
 /**
  * Only show talk meta block for `talk` CPT in editor.
  *
- * @param bool|array $allowed_block_types Array of block type slugs, or boolean to enable/disable all.
+ * @param bool|array              $allowed_block_types Array of block type slugs, or boolean to enable/disable all.
  * @param WP_Block_Editor_Context $block_editor_context The current block editor context.
  *
  * @return bool|array
  */
 function filter_allowed_blocks( $allowed_block_types, $block_editor_context ) {
-	if ( 'talk' === get_post_type() || $block_editor_context->name === 'core/edit-site' ) {
+	if ( 'talk' === get_post_type() || 'core/edit-site' === $block_editor_context->name ) {
 		return $allowed_block_types;
 	}
 

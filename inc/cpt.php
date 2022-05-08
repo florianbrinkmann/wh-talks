@@ -148,7 +148,7 @@ function get_string_metas() {
  */
 function get_meta_value_markup( $meta_key ) {
 	$allowed_meta = false;
-	
+
 	foreach ( get_string_metas() as $meta ) {
 		if ( $meta_key !== $meta['key'] ) {
 			continue;
@@ -183,3 +183,45 @@ function get_meta_value_markup( $meta_key ) {
 		$host
 	);
 }
+
+/**
+ * Adds post class to highlighted `talk` posts.
+ *
+ * @param array $classes Array of post classes.
+ * @param array $class Array of additional classes.
+ * @param int   $post_id Post ID.
+ * @return array
+ */
+function add_highlight_post_class( $classes, $class, $post_id ) {
+	if ( 'talk' !== get_post_type() ) {
+		return $classes;
+	}
+
+	$is_highlight = (bool) get_post_meta( $post_id, 'wh_talks_is_highlight', true );
+	if ( $is_highlight ) {
+		$classes[] = 'highlight-talk';
+	}
+
+	return $classes;
+}
+add_filter( 'post_class', __NAMESPACE__ . '\\add_highlight_post_class', 10, 3 );
+
+/**
+ * Adds body class to highlighted `talk` posts.
+ *
+ * @param array $classes Array of post classes.
+ * @return array
+ */
+function add_highlight_body_class( $classes ) {
+	if ( 'talk' !== get_post_type() || ! is_single() ) {
+		return $classes;
+	}
+
+	$is_highlight = (bool) get_post_meta( get_the_ID(), 'wh_talks_is_highlight', true );
+	if ( $is_highlight ) {
+		$classes[] = 'highlight-talk';
+	}
+
+	return $classes;
+}
+add_filter( 'body_class', __NAMESPACE__ . '\\add_highlight_body_class' );
