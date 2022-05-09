@@ -26,6 +26,9 @@ function register_blocks() {
 			'render_callback' => __NAMESPACE__ . '\\render_single_meta_block',
 		]
 	);
+	register_block_type(
+		__DIR__ . '/../build'
+	);
 }
 add_action( 'init', __NAMESPACE__ . '\\register_blocks' );
 
@@ -35,16 +38,8 @@ add_action( 'init', __NAMESPACE__ . '\\register_blocks' );
  * @return void
  */
 function enqueue_editor_assets() {
-	$asset_info = include __DIR__ . '/../build/index.asset.php';
-
-	wp_enqueue_script(
-		'wh-talks-editor-modifications',
-		plugins_url( '../build/index.js', __FILE__ ),
-		$asset_info['dependencies'],
-		$asset_info['version']
-	);
 	wp_localize_script(
-		'wh-talks-editor-modifications',
+		'wh-talks-editor-modifications-editor-script',
 		'whTalksObject',
 		[
 			'metas' => get_string_metas(),

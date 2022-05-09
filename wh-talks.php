@@ -13,27 +13,37 @@
 namespace WH\Talks;
 
 /**
- * Loads the textdomain to make the plugin translatable.
+ * Load translations.
  *
  * @return void
  */
-function load_textdomain() {
+function load_translations() {
 	load_plugin_textdomain(
 		'wh-talks',
 		false,
 		dirname( plugin_basename( __FILE__ ) ) . '/languages'
 	);
+
+	wp_set_script_translations( 'wh-talks-meta-list-editor-script', 'wh-talks', plugin_dir_path( __FILE__ ) . '/languages/' );
+	wp_set_script_translations( 'wh-talks-single-meta-editor-script', 'wh-talks', plugin_dir_path( __FILE__ ) . '/languages/' );
+	wp_set_script_translations( 'wh-talks-editor-modifications-editor-script', 'wh-talks', plugin_dir_path( __FILE__ ) . '/languages/' );
 }
-add_action( 'init', __NAMESPACE__ . '\\load_textdomain' );
+add_action( 'init', __NAMESPACE__ . '\\load_translations', 11 );
 
-register_activation_hook( __FILE__, function() {
-	register_cpt();
-	flush_rewrite_rules();
-} );
+register_activation_hook(
+	__FILE__,
+	function() {
+		register_cpt();
+		flush_rewrite_rules();
+	}
+);
 
-register_deactivation_hook( __FILE__, function() {
-	flush_rewrite_rules();
-} );
+register_deactivation_hook(
+	__FILE__,
+	function() {
+		flush_rewrite_rules();
+	}
+);
 
 require_once 'inc/cpt.php';
 require_once 'inc/blocks.php';

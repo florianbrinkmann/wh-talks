@@ -1,3 +1,4 @@
 {
+    "name": "wh-talks/editor-modifications",
     "editorScript": "file:./index.js"
 }
