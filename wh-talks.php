@@ -45,5 +45,25 @@ register_deactivation_hook(
 	}
 );
 
+register_uninstall_hook(
+	__FILE__,
+	__NAMESPACE__ . '\\uninstall'
+);
+
+function uninstall() {
+	$post_ids = get_posts(
+		[
+			'post_type'   => 'talk',
+			'post_status' => 'any',
+			'numberposts' => -1,
+			'fields'      => 'ids',
+		]
+	);
+
+	foreach ( $post_ids as $post_id ) {
+		wp_delete_post( $post_id, true );
+	}
+}
+
 require_once 'inc/cpt.php';
 require_once 'inc/blocks.php';
