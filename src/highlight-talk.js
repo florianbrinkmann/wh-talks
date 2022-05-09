@@ -4,7 +4,7 @@ import { useEntityProp } from '@wordpress/core-data';
 import { CheckboxControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
-registerPlugin( 'wh-hide-page-title-checkbox-post-status-info', {
+registerPlugin( 'wh-talks-highlight-talk', {
 	render: () => {
 		if ( 'talk' !== wp.data.select( 'core/editor' ).getCurrentPostType() ) {
 			return null;
