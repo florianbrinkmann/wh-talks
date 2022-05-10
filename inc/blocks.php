@@ -39,7 +39,7 @@ add_action( 'init', __NAMESPACE__ . '\\register_blocks' );
  */
 function enqueue_editor_assets() {
 	wp_localize_script(
-		'wh-talks-editor-modifications-editor-script',
+		'wh-talks-meta-list-editor-script',
 		'whTalksObject',
 		[
 			'metas' => get_string_metas(),
@@ -47,6 +47,22 @@ function enqueue_editor_assets() {
 	);
 }
 add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_editor_assets' );
+
+/**
+ * Do not load editor modifications script in widgets screen.
+ *
+ * @return void
+ */
+function remove_editor_modifications_script_from_widgets_screen() {
+	global $block_editor_context;
+	$context_name = $block_editor_context->name ?? null;
+	if ( 'core/edit-widgets' !== $context_name ) {
+		return;
+	}
+
+	wp_deregister_script( 'wh-talks-editor-modifications-editor-script' );
+}
+add_filter( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\remove_editor_modifications_script_from_widgets_screen', 9 );
 
 /**
  * Renders the meta list block block on the frontend.
