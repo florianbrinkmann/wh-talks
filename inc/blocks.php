@@ -62,7 +62,7 @@ function remove_editor_modifications_script_from_widgets_screen() {
 
 	wp_deregister_script( 'wh-talks-editor-modifications-editor-script' );
 }
-add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\remove_editor_modifications_script_from_widgets_screen', 9 );
+add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\remove_editor_modifications_script_from_widgets_screen' );
 
 /**
  * Renders the meta list block block on the frontend.
