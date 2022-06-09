@@ -4,6 +4,7 @@
     "name": "wh-talks/meta-list",
     "version": "0.1.0",
     "title": "Talk metadata list",
+    "icon": "megaphone",
     "description": "Display the talk metadata as list",
     "supports": {
         "html": false,

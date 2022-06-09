@@ -4,6 +4,7 @@
     "name": "wh-talks/single-meta",
     "version": "0.1.0",
     "title": "Talk meta value",
+    "icon": "megaphone",
     "description": "Display single talk meta value",
     "attributes": {
         "metaKey": {
