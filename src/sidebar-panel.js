@@ -1,11 +1,10 @@
 import { registerPlugin } from '@wordpress/plugins';
-import { PluginDocumentSettingPanel } from '@wordpress/edit-post';
+import { PluginDocumentSettingPanel } from '@wordpress/editor';
 import { useEntityProp } from '@wordpress/core-data';
 import { TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 registerPlugin( 'wh-talks-metadata-panel', {
-	icon: 'megaphone',
 	render: () => {
 		if ( 'talk' !== wp.data.select( 'core/editor' ).getCurrentPostType() ) {
 			return null;
@@ -26,6 +25,7 @@ registerPlugin( 'wh-talks-metadata-panel', {
 			<PluginDocumentSettingPanel
 				name='wh-talks-meta-panel'
 				title={ __( 'Talk meta data', 'wh-talks' ) }
+				icon='megaphone'
 			>
 				<TextControl
 					label={ __(

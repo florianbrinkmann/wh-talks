@@ -1,5 +1,5 @@
 import { registerPlugin } from '@wordpress/plugins';
-import { PluginPostStatusInfo } from '@wordpress/edit-post';
+import { PluginPostStatusInfo } from '@wordpress/editor';
 import { useEntityProp } from '@wordpress/core-data';
 import { CheckboxControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';

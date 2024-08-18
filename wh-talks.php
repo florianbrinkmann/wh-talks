@@ -5,7 +5,7 @@
  * Author: Florian Brinkmann
  * Author URI: https://florianbrinkmann.com/en/
  * Version: 0.1.0
- * Requires at least: 6.0
+ * Requires at least: 6.6
  * Requires PHP: 7.0
  * Text Domain: wh-talks
  */

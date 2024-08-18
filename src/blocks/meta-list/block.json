@@ -1,8 +1,8 @@
 {
-    "$schema": "https://schemas.wp.org/trunk/block.json",
-    "apiVersion": 2,
+    "$schema": "https://schemas.wp.org/wp/6.6/block.json",
+    "apiVersion": 3,
     "name": "wh-talks/meta-list",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "title": "Talk metadata list",
     "icon": "megaphone",
     "description": "Display the talk metadata as list",
