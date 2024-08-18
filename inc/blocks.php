@@ -72,7 +72,7 @@ add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\remove_editor_modi
  *
  * @return string
  */
-function render_meta_list_block( $attributes, $block_content ) {
+function render_meta_list_block() {
 	$markup = '';
 	foreach ( get_string_metas() as $meta ) {
 		$meta_key   = $meta['key'] ?? null;
@@ -110,7 +110,7 @@ function render_meta_list_block( $attributes, $block_content ) {
  *
  * @return string
  */
-function render_single_meta_block( $attributes, $block_content ) {
+function render_single_meta_block( $attributes ) {
 	$meta_key = $attributes['metaKey'] ?? null;
 	if ( empty( $meta_key ) ) {
 		return '';
