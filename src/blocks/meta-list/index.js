@@ -47,8 +47,5 @@ registerBlockType( 'wh-talks/meta-list', {
 				{ ! hasValues && <li>{ __( 'Lists all talk meta data.', 'wh-talks' ) }</li> }
 			</ul>
 		);
-	},
-	save: () => {
-		return <ul { ...useBlockProps.save() }></ul>;
-	},
+	}
 } );

@@ -97,7 +97,9 @@ function render_meta_list_block( $attributes, $block_content ) {
 		return '';
 	}
 
-	return str_replace( '</ul>', "$markup</ul>", $block_content );
+	$wrapper_attributes = get_block_wrapper_attributes();
+
+	return "<ul {$wrapper_attributes}>$markup</ul>";
 }
 
 /**
@@ -118,12 +120,14 @@ function render_single_meta_block( $attributes, $block_content ) {
 		return '';
 	}
 
+	$wrapper_attributes = get_block_wrapper_attributes();
+
 	$label = $attributes['label'] ?? null;
 	if ( empty( $label ) ) {
-		return str_replace( '</p>', "$meta_value_markup</p>", $block_content );
+		return "<p {$wrapper_attributes }>$meta_value_markup</p>";
 	}
 
-	return str_replace( '</p>', "<span class='wh-talks-meta-label'>$label</span>$meta_value_markup</p>", $block_content );
+	return "<p {$wrapper_attributes}><span class='wh-talks-meta-label'>$label</span>$meta_value_markup</p>";
 }
 
 /**

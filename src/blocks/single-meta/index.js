@@ -76,8 +76,5 @@ registerBlockType( 'wh-talks/single-meta', {
 				</p>
 			</>
 		);
-	},
-	save: () => {
-		return <p { ...useBlockProps.save() }/>;
-	},
+	}
 } );
