@@ -38,21 +38,21 @@ registerPlugin( 'wh-talks-metadata-panel', {
 					}
 				/>
 				<TextControl
-					label={ __( 'Language' ) }
+					label={ __( 'Language', 'wh-talks' ) }
 					value={ language }
 					onChange={ ( newValue ) =>
 						updateMeta( 'wh_talks_language', newValue )
 					}
 				/>
 				<TextControl
-					label={ __( 'Duration' ) }
+					label={ __( 'Duration', 'wh-talks' ) }
 					value={ duration }
 					onChange={ ( newValue ) =>
 						updateMeta( 'wh_talks_duration', newValue )
 					}
 				/>
 				<TextControl
-					label={ __( 'Video link' ) }
+					label={ __( 'Video link', 'wh-talks' ) }
 					value={ videoLink }
 					type='url'
 					onChange={ ( newValue ) =>
@@ -60,7 +60,7 @@ registerPlugin( 'wh-talks-metadata-panel', {
 					}
 				/>
 				<TextControl
-					label={ __( 'Slides link' ) }
+					label={ __( 'Slides link', 'wh-talks' ) }
 					value={ slidesLink }
 					type='url'
 					onChange={ ( newValue ) =>
